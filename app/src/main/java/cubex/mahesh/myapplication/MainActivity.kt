@@ -1,10 +1,12 @@
 package cubex.mahesh.myapplication
 
 import android.app.ProgressDialog
+import android.app.Service
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.StrictMode
 import android.view.View
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,11 +18,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
     }
 
     fun getImage(view: View) {
       var mt = MyTask(iview)
         mt.execute()
+        var s: Service? = null
     }
 
     class MyTask(var iView:ImageView) : AsyncTask<Unit,Unit,Unit>()
